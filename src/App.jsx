@@ -1,7 +1,7 @@
 function App() {
 
     return (
-        <h1>Ciao sono la tua nuova App di FE</h1>
+        <h1 className="display-1">Ciao sono la tua nuova App di FE</h1>
     )
 }
 
