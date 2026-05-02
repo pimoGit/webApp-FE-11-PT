@@ -57,9 +57,9 @@ function HomePage() {
             <h2><i>The nerdest book community</i></h2>
 
             <div className="row row-cols-3 mt-4">
-                <BookCard book={tempBooks[0]} />
-                <BookCard book={tempBooks[1]} />
-                <BookCard book={tempBooks[2]} />
+                <BookCard key={tempBooks[0].id} book={tempBooks[0]} />
+                <BookCard key={tempBooks[1].id} book={tempBooks[1]} />
+                <BookCard key={tempBooks[2].id} book={tempBooks[2]} />
             </div>
         </>
     )
