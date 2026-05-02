@@ -24,7 +24,7 @@ function BookPage() {
 
     // definizione funzione rendering reviews
     const renderReview = () => {
-        return
+        return book.reviews?.map((review) => <ReviewCard key={review.id} review={review} />)
     }
 
     // chiamata da useEffect
