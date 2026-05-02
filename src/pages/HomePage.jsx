@@ -1,7 +1,14 @@
 function HomePage() {
 
     return (
-        <h2>Ciao io sono la HomaPage</h2>
+        <>
+            <h1 className="text-primary">Bool Books</h1>
+            <h2><i>The nerdest book community</i></h2>
+
+            <div className="row row-cols-3 mt-4">
+                {/* Libri qui */}
+            </div>
+        </>
     )
 }
 
