@@ -1,7 +1,21 @@
+import HomePage from "./pages/HomePage"
+import BookPage from "./pages/BookPage"
+import DefaultLayout from "./layouts/DefaultLayout"
+
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+
 function App() {
 
     return (
-        <h1 className="display-1">Ciao sono la tua nuova App di FE</h1>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<DefaultLayout />}>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/books/:id" element={<BookPage />} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
