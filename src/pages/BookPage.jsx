@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 import ReviewCard from "../components/ReviewCard";
+import ReviewForm from "../components/ReviewForm";
 
 
 function BookPage() {
@@ -46,7 +47,9 @@ function BookPage() {
                     <h4>Our community reviews</h4>
                 </header>
                 {renderReview()}
-
+            </section>
+            <section>
+                {book?.id && <ReviewForm book_id={book.id} />}
             </section>
             <footer className="border-top border-1 pt-2 mb-3 d-flex justify-content-end">
                 <Link className="btn btn-secondary" to="/">Back to home</Link>
