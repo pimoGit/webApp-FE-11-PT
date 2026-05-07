@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -10,6 +10,8 @@ import { useGlobal } from "../contexts/GlobalContext";
 
 
 function BookPage() {
+
+    const redirect = useNavigate();
 
     // prendiamo dal context il valore che ci serve
     const { setIsLoading } = useGlobal();
@@ -35,6 +37,7 @@ function BookPage() {
             .then(response => { setBook(response.data) })
             .catch(err => {
                 console.log(err);
+                if (err.status === 404) redirect('/404')
             })
             .finally(loadingFalse())
     }
