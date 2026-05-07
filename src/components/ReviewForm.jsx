@@ -16,6 +16,18 @@ function ReviewForm({ book_id, refreshReviews }) {
 
     // settiamo var di stato (oggetto con info form)
     const [formData, setFormData] = useState(initialValueForm);
+    // altra var di stato per validazione
+    const [isFormValid, setIsFormValid] = useState(true);
+
+    // funzione di check validazione e settaggio stato relativo
+    const validateForm = () => {
+        if (!formData.text || !formData.name) return false
+        if (isNaN(formData.vote) || formData.vote < 1 || formData.vote > 5) return false
+
+        return true
+    }
+
+
 
     // funzione di gestione dati form all'onChange
     const setFieldValue = e => {
@@ -29,6 +41,13 @@ function ReviewForm({ book_id, refreshReviews }) {
     const handleSubmit = e => {
         // blocchiamo comportamento di default del form
         e.preventDefault();
+
+        // check di validazione in caso per fermare qui la funzione di Submit
+        if (!validateForm()) {
+            setIsFormValid(false)
+            return
+        }
+
         // chiamata axios per la rotta di store con info per il body
         axios.post(apiUrl, formData, { headers: { 'Content-Type': 'application/json' } })
             .then(() => {
@@ -40,6 +59,7 @@ function ReviewForm({ book_id, refreshReviews }) {
             .catch((err) => {
                 console.log(err);
             })
+            .finally(() => { setIsFormValid(true) })
     }
 
 
@@ -49,6 +69,8 @@ function ReviewForm({ book_id, refreshReviews }) {
                 <h5>Add your review</h5>
             </header>
             <div className="card-body">
+                {!isFormValid && <div className="alert alert-danger mb-3">The data in the form is not valid</div>}
+
                 <form onSubmit={handleSubmit} >
                     <div className="form-group">
                         <label>Name</label>
