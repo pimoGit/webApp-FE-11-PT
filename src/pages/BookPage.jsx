@@ -36,7 +36,7 @@ function BookPage() {
             .catch(err => {
                 console.log(err);
             })
-            .finally(loadingFalse)
+            .finally(loadingFalse())
     }
 
     // definizione funzione rendering reviews
