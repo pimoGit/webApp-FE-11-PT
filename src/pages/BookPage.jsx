@@ -5,8 +5,20 @@ import { useState, useEffect } from "react";
 import ReviewCard from "../components/ReviewCard";
 import ReviewForm from "../components/ReviewForm";
 
+// import del context per il loader
+import { useGlobal } from "../contexts/GlobalContext";
+
 
 function BookPage() {
+
+    // prendiamo dal context il valore che ci serve
+    const { setIsLoading } = useGlobal();
+
+    // funzione di disattivazione loader
+    const loadingFalse = () => {
+        // settiamo il loading attivo
+        setIsLoading(false)
+    }
 
     // recuperiamo id da param dinamico
     const { id } = useParams();
@@ -16,11 +28,15 @@ function BookPage() {
 
     // definiamo funzione chiamata a BE
     const fetchBook = () => {
+        // settiamo il loading attivo
+        setIsLoading(true);
+
         axios.get("http://localhost:3000/api/books/" + id)
             .then(response => { setBook(response.data) })
             .catch(err => {
                 console.log(err);
             })
+            .finally(loadingFalse)
     }
 
     // definizione funzione rendering reviews
