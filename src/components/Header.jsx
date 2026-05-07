@@ -6,6 +6,7 @@ function Header() {
         <nav className="navbar bg-body-tertiary mb-4">
             <div className="container-fluid justify-content-start">
                 <Link className="navbar-brand" to="/">Bool Books</Link>
+                <Link className="btn btn-sm btn-secondary" to="/books/create">Create Book</Link>
             </div>
         </nav>
     )
